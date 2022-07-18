@@ -18,8 +18,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    require: true,
-    select: false
+    require: true
   },
   profilePic: {
     type: String,
@@ -27,10 +26,10 @@ const UserSchema = new mongoose.Schema({
   }
 }, {timestamps: true})
 
-UserSchema.pre('save', async function (next) {
+/* UserSchema.pre('save', async function (next) {
   const hashPass = await bcrypt.hash(this.password, 12)
   this.password = hashPass
   next()
-})
+}) */
 
 export default mongoose.model("User", UserSchema)
