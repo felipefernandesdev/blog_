@@ -4,7 +4,7 @@ const dados = (data) => {
   const ul = document.querySelector("data")
   const li = document.createElement('li')
 }
-dados()
+//dados()
 
 const getUsers = async () => {
   return await fetch(url)

@@ -4,8 +4,7 @@ import bcrypt from 'bcrypt';
 class AuthController {
   async register(req, res) {
     try {
-      const { name, username, email, password, picture } = req.body
-
+      const {name, username, email, picture} = req.body
       const userExists = await User.findOne({ email })
       if (userExists) {
         return response.status(400).json({
@@ -13,12 +12,12 @@ class AuthController {
         message: "User already exists"
         })
       }      
-      const hashPass = await bcrypt.hash(password, 12)
+      req.body.password = await bcrypt.hash(req.body.password, 12)
       const newUser = new User({
         name,
         username,
         email,
-        hashPass,
+        password: req.body.password,
         picture
       })
 
